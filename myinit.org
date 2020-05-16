@@ -11,23 +11,23 @@
 * try
 #+BEGIN_SRC emacs-lisp
 (use-package try
-:ensure t)
+  :ensure t)
 #+END_SRC
 
 * which key
   Brings up some help
 #+BEGIN_SRC emacs-lisp
 (use-package which-key
-:ensure t
-:config (which-key-mode))
+  :ensure t
+  :config (which-key-mode))
 #+END_SRC
 
 * org-mode stuff
 #+BEGIN_SRC emacs-lisp
 (use-package org-bullets
-:ensure t
-:config
-(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+  :ensure t
+  :config
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 #+END_SRC
 
 * ido
