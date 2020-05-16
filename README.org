@@ -1,3 +1,5 @@
+#+STARTUP: showall hidestars
+
 * Links
   - [[https://google.com][google]]
 * Lesson 1
@@ -13,3 +15,18 @@
   Show some org-mode
   - review init.el
   - set up readme.org
+
+* Experiment
+  h1 ping h2 -c 100
+  - 64 bytes from 10.0.0.2: icmp_seq=1 ttl=64 time=28.5ms
+  - 64 bytes from 10.0.0.2: icmp_seq=2 ttl=64 time=27.3ms
+  - 64 bytes from 10.0.0.2: icmp_seq=...100 ttl=64 time=~25ms
+  - 100 packets transmitted, 96 received, 4% packet loss, time 99167ms
+    rtt min/avg/max/mdev = 24.744/26.331/29.483/0.919 ms
+  
+  h1 ping h3 -c 100
+  - 64 bytes from 10.0.0.3: icmp_seq=1 ttl=64 time=1078ms
+  - 64 bytes from 10.0.0.3: icmp_seq=2 ttl=64 time=79.0ms
+  - 64 bytes from 10.0.0.3: icmp_seq=...100 ttl=64 time=~35ms
+  - 100 packets transmitted, 85 received, 15% packet loss, time 99164ms
+    rtt min/avg/max/mdev = 32.800/47.020/1078.656/112.667 ms, pipe 2
