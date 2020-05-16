@@ -3,18 +3,19 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 (global-set-key (kbd "<f5>") 'revert-buffer)
 (load-theme 'leuven t)
+;; use (C-c ') for editor
 
 (use-package try
-:ensure t)
+  :ensure t)
 
 (use-package which-key
-:ensure t
-:config (which-key-mode))
+  :ensure t
+  :config (which-key-mode))
 
 (use-package org-bullets
-:ensure t
-:config
-(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+  :ensure t
+  :config
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 
 (setq indo-enable-flex-matching t)
 (setq ido-everywhere t)
@@ -74,7 +75,13 @@
     (global-auto-complete-mode t)
     ))
 
-(+
- 2
- 5) ; C-c C-c to evaluatee
- (tetris)
+(use-package flycheck
+  :ensure t
+  :init
+  (global-flycheck-mode t))
+
+(use-package jedi
+  :ensure t
+  :init
+  (add-hook 'python-mode-hook 'jedi:setup)
+  (add-hook 'pthyon-mode-hook 'jedi:ac-setup))
