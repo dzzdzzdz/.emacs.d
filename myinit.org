@@ -66,8 +66,11 @@
 * swiper
   #+BEGIN_SRC emacs-lisp
     (use-package counsel
-      :ensure t
-      )
+      :bind
+      (("M-y" . counsel-yank-pop)
+       :map ivy-minibuffer-map
+       ("M-y" . ivy-next-line)))
+
     (use-package swiper
       :ensure try
       :config
@@ -93,6 +96,9 @@
 	))
   #+END_SRC
 
+  #+RESULTS:
+  : t
+
 * auto-complete  
   #+BEGIN_SRC emacs-lisp
     (use-package auto-complete
@@ -111,14 +117,6 @@
       :init
       (global-flycheck-mode t))
   #+END_SRC
-* python
-  #+BEGIN_SRC emacs-lisp
-    (use-package jedi
-      :ensure t
-      :init
-      (add-hook 'python-mode-hook 'jedi:setup)
-      (add-hook 'pthyon-mode-hook 'jedi:ac-setup))
-  #+END_SRC
 * undo tree
   - C-x u to visualise tree
   - C-x d for diff
@@ -127,6 +125,37 @@
       :ensure t
       :init
       (global-undo-tree-mode))
+  #+END_SRC
+* misc packages
+  #+BEGIN_SRC emacs-lisp
+    (global-hl-line-mode t)
+
+    (use-package beacon
+      :ensure t
+      :config
+      (beacon-mode 1)
+      (setq beacon-color "#666600"))
+
+    (use-package hungry-delete
+      :ensure t
+      :config
+      (global-hungry-delete-mode))
+
+    (use-package aggressive-indent
+      :ensure t
+      :config
+      (global-aggressive-indent-mode 1))
+
+    (use-package expand-region
+      :ensure t
+      :config
+      (global-set-key (kbd "C-=") 'er/expand-region))
+
+    ; C-;
+    (use-package iedit
+      :ensure t)
+
+    (setq save-interprogram-paste-before-kill t)
   #+END_SRC
 
   #+RESULTS:
