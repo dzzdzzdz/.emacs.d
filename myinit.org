@@ -120,8 +120,8 @@
       (add-hook 'pthyon-mode-hook 'jedi:ac-setup))
   #+END_SRC
 * undo tree
-***  C-x u to visualise tree
-*** C-x d for diff
+  - C-x u to visualise tree
+  - C-x d for diff
   #+BEGIN_SRC emacs-lisp
     (use-package undo-tree
       :ensure t
