@@ -5,9 +5,64 @@
     (tool-bar-mode -1)
     (fset 'yes-or-no-p 'y-or-n-p)
     (global-set-key (kbd "<f5>") 'revert-buffer)
-    (load-theme 'leuven t)
+    (column-number-mode 1)
+    (setq inhibit-startup-screen t)
+    (setq initial-scratch-message nil)
+    (global-linum-mode 1)
+    (global-subword-mode 1)
+    (set-face-attribute 'default nil :height 130)
+    (setq explicit-shell-file-name "/bin/zsh")
+
+    (defun my-backup-file-name (fpath)
+      "Return a new file path of a given file path.
+	  If the new path's directories does not exist, create them."
+      (let* (
+	     (backupRootDir "~/.emacs.d/backup/")
+	     (filePath (replace-regexp-in-string "[A-Za-z]:" "" fpath )) ; remove Windows driver letter in path, for example, “C:”
+	     (backupFilePath (replace-regexp-in-string "//" "/" (concat backupRootDir filePath "~") ))
+	     )
+	(make-directory (file-name-directory backupFilePath) (file-name-directory backupFilePath))
+	backupFilePath))
+
+    (setq make-backup-file-name-function 'my-backup-file-name)
     ;; use (C-c ') for editor
   #+END_SRC
+* theme
+  #+BEGIN_SRC emacs-lisp
+    (use-package doom-themes
+      :config
+      ;; Global settings (defaults)
+      (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+	    doom-themes-enable-italic t) ; if nil, italics is universally disabled
+      (load-theme 'doom-nova t)
+
+      ;; Enable flashing mode-line on errors
+      (doom-themes-visual-bell-config)
+
+      ;; Enable custom neotree theme (all-the-icons must be installed!)
+      (doom-themes-neotree-config)
+      ;; or for treemacs users
+      (setq doom-themes-treemacs-theme "doom-colors") ; use the colorful treemacs theme
+      (doom-themes-treemacs-config)
+
+      ;; Corrects (and improves) org-mode's native fontification.
+      (doom-themes-org-config))
+  #+END_SRC
+
+  #+RESULTS:
+  : t
+  
+* keys
+  #+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "M-o") 'other-window)
+  (global-set-key (kbd "C-<return>") 'execute-extended-command)
+  ;(global-set-key (kbd "C-x g") 'magit-status)
+  (global-set-key (kbd "M-o") 'ace-window)
+  (global-set-key (kbd "C-x C-g") 'goto-line)
+  #+END_SRC
+
+  #+RESULTS:
+  : goto-line
 
 * try
   #+BEGIN_SRC emacs-lisp
@@ -156,6 +211,15 @@
       :ensure t)
 
     (setq save-interprogram-paste-before-kill t)
+  #+END_SRC
+
+  #+RESULTS:
+  : t
+* magit
+  #+BEGIN_SRC emacs-lisp
+    (use-package magit
+      :ensure t
+      :init)
   #+END_SRC
 
   #+RESULTS:

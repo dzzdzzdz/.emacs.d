@@ -9,3 +9,10 @@ for i in range(10):
 
 def f(x):
     return 2*x
+
+def g():
+    for i in range(10):
+        print(i)
+        print("HELLO")
+
+        

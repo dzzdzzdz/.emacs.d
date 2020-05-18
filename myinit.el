@@ -2,8 +2,52 @@
 (tool-bar-mode -1)
 (fset 'yes-or-no-p 'y-or-n-p)
 (global-set-key (kbd "<f5>") 'revert-buffer)
-(load-theme 'leuven t)
+(column-number-mode 1)
+(setq inhibit-startup-screen t)
+(setq initial-scratch-message nil)
+(global-linum-mode 1)
+(global-subword-mode 1)
+(set-face-attribute 'default nil :height 130)
+(setq explicit-shell-file-name "/bin/zsh")
+
+(defun my-backup-file-name (fpath)
+  "Return a new file path of a given file path.
+      If the new path's directories does not exist, create them."
+  (let* (
+	 (backupRootDir "~/.emacs.d/backup/")
+	 (filePath (replace-regexp-in-string "[A-Za-z]:" "" fpath )) ; remove Windows driver letter in path, for example, “C:”
+	 (backupFilePath (replace-regexp-in-string "//" "/" (concat backupRootDir filePath "~") ))
+	 )
+    (make-directory (file-name-directory backupFilePath) (file-name-directory backupFilePath))
+    backupFilePath))
+
+(setq make-backup-file-name-function 'my-backup-file-name)
 ;; use (C-c ') for editor
+
+(use-package doom-themes
+  :config
+  ;; Global settings (defaults)
+  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+	doom-themes-enable-italic t) ; if nil, italics is universally disabled
+  (load-theme 'doom-nova t)
+
+  ;; Enable flashing mode-line on errors
+  (doom-themes-visual-bell-config)
+
+  ;; Enable custom neotree theme (all-the-icons must be installed!)
+  (doom-themes-neotree-config)
+  ;; or for treemacs users
+  (setq doom-themes-treemacs-theme "doom-colors") ; use the colorful treemacs theme
+  (doom-themes-treemacs-config)
+
+  ;; Corrects (and improves) org-mode's native fontification.
+  (doom-themes-org-config))
+
+(global-set-key (kbd "M-o") 'other-window)
+(global-set-key (kbd "C-<return>") 'execute-extended-command)
+;(global-set-key (kbd "C-x g") 'magit-status)
+(global-set-key (kbd "M-o") 'ace-window)
+(global-set-key (kbd "C-x C-g") 'goto-line)
 
 (use-package try
   :ensure t)
@@ -41,8 +85,11 @@
     ))
 
 (use-package counsel
-  :ensure t
-  )
+  :bind
+  (("M-y" . counsel-yank-pop)
+   :map ivy-minibuffer-map
+   ("M-y" . ivy-next-line)))
+
 (use-package swiper
   :ensure try
   :config
@@ -80,13 +127,40 @@
   :init
   (global-flycheck-mode t))
 
-(use-package jedi
-  :ensure t
-  :init
-  (add-hook 'python-mode-hook 'jedi:setup)
-  (add-hook 'pthyon-mode-hook 'jedi:ac-setup))
-
 (use-package undo-tree
   :ensure t
   :init
   (global-undo-tree-mode))
+
+(global-hl-line-mode t)
+
+(use-package beacon
+  :ensure t
+  :config
+  (beacon-mode 1)
+  (setq beacon-color "#666600"))
+
+(use-package hungry-delete
+  :ensure t
+  :config
+  (global-hungry-delete-mode))
+
+(use-package aggressive-indent
+  :ensure t
+  :config
+  (global-aggressive-indent-mode 1))
+
+(use-package expand-region
+  :ensure t
+  :config
+  (global-set-key (kbd "C-=") 'er/expand-region))
+
+; C-;
+(use-package iedit
+  :ensure t)
+
+(setq save-interprogram-paste-before-kill t)
+
+(use-package magit
+  :ensure t
+  :init)
