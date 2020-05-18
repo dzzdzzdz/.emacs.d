@@ -85,3 +85,8 @@
   :init
   (add-hook 'python-mode-hook 'jedi:setup)
   (add-hook 'pthyon-mode-hook 'jedi:ac-setup))
+
+(use-package undo-tree
+  :ensure t
+  :init
+  (global-undo-tree-mode))
