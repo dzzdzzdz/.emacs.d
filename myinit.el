@@ -1,11 +1,12 @@
 (setq inhibit-startup-message t)
 (tool-bar-mode -1)
 (fset 'yes-or-no-p 'y-or-n-p)
-(global-set-key (kbd "<f5>") 'revert-buffer)
+(global-set-key (kbd "s-r") 'revert-buffer)
 (column-number-mode 1)
 (setq inhibit-startup-screen t)
 (setq initial-scratch-message nil)
 (global-linum-mode 1)
+
 (global-subword-mode 1)
 (set-face-attribute 'default nil :height 130)
 (setq explicit-shell-file-name "/bin/zsh")
@@ -23,6 +24,8 @@
 
 (setq make-backup-file-name-function 'my-backup-file-name)
 ;; use (C-c ') for editor
+
+(add-hook 'eshell-mode-hook (lambda () (linum-mode -1)))
 
 (use-package doom-themes
   :config
@@ -46,6 +49,7 @@
 (global-set-key (kbd "M-o") 'other-window)
 (global-set-key (kbd "C-<return>") 'execute-extended-command)
 ;(global-set-key (kbd "C-x g") 'magit-status)
+(global-set-key (kbd "C-M-o") 'ace-swap-window)
 (global-set-key (kbd "M-o") 'ace-window)
 (global-set-key (kbd "C-x C-g") 'goto-line)
 
@@ -74,15 +78,22 @@
 ;;   :config
 ;;   (tabbar-mode 1))
 
+(winner-mode 1) ; C-left, C-right for state
+(windmove-default-keybindings) ; shift + arrow
+
 (use-package ace-window
   :ensure t
-  :init
+  :config
   (progn
     (global-set-key [remap other-window] 'ace-window)
+
     (custom-set-faces
      '(aw-leading-char-face
        ((t (:inherit ace-jump-face-foreground :height 3.0)))))
-    ))
+    )
+  (setq aw-scope 'visible))
+  ;(setq aw-ignore-on t)
+  ;(setq aw-ignored-buffers '("*minimap*"))
 
 (use-package counsel
   :bind
@@ -138,7 +149,7 @@
   :ensure t
   :config
   (beacon-mode 1)
-  (setq beacon-color "#666600"))
+  (setq beacon-color "#fcfc83"))
 
 (use-package hungry-delete
   :ensure t
@@ -164,3 +175,35 @@
 (use-package magit
   :ensure t
   :init)
+
+(use-package web-mode
+  :ensure t
+  :config
+  (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+  (setq web-mode-engines-alist
+	'(("django" . "\\.html\\'")))
+  (setq web-mode-ac-sources-alist
+	'(("css" . (ac-source-css-property))
+	  ("html" . (ac-source-words-in-buffer ac-source-abbrev))))
+
+  (setq web-mode-enable-auto-closing t)
+  (setq web-mode-enable-auto-quoting t))
+
+(use-package json-mode
+  :ensure t
+  :init)
+
+;; (use-package minimap
+;;   :ensure t
+;;   :config
+;;   (setq minimap-window-location "right")
+;;   (global-minimap-mode 1))
+
+(use-package yaml-mode
+  :ensure t
+  :config
+  (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
+  (add-to-list 'auto-mode-alist '("\\.yaml\\'" . yaml-mode))
+  (add-hook 'yaml-mode-hook
+	    '(lambda ()
+	       (define-key yaml-mode-map "\C-m" 'newline-and-indent))))
