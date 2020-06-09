@@ -6,6 +6,7 @@
 (setq inhibit-startup-screen t)
 (setq initial-scratch-message nil)
 (global-linum-mode 1)
+(global-visual-line-mode 1)
 
 (global-subword-mode 1)
 (set-face-attribute 'default nil :height 130)
@@ -64,6 +65,22 @@
   :ensure t
   :config
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+(use-package htmlize
+  :ensure t)
+(use-package ox-reveal
+  :ensure t
+  :config
+  (setq Org-Reveal-root "file:///path-to-reveal.js")
+  (setq Org-Reveal-title-slide nil))
+
+; ispell, C-c $ to teach
+(setq ispell-program-name "/usr/local/bin/ispell")
+(add-hook 'org-mode-hook 'flyspell-mode)
+
+; notes
+(setq org-agenda-files (list "~/.emacs.d/.notes/work/dh/main.org"
+			     "~/.emacs.d/.notes/omscs/computerNetworking/i.org"
+			     "~/.emacs.d/.notes/.dzzdzzdz.org"))
 
 (setq indo-enable-flex-matching t)
 (setq ido-everywhere t)
