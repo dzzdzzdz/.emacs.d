@@ -1,3 +1,0 @@
-* how to recreate vcr
-* how to convert ASCII-8BIT encoding to UTF-8 file
-* renaming rspec its and contexts to remove uncertain language (it should -> it)
