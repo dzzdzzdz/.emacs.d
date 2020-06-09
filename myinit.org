@@ -35,8 +35,10 @@
 * eshell
   #+BEGIN_SRC emacs-lisp
     (add-hook 'eshell-mode-hook (lambda () (linum-mode -1)))
-    
   #+END_SRC
+
+  #+RESULTS:
+  | lambda | nil | (linum-mode -1) |
 * theme
   #+BEGIN_SRC emacs-lisp
     (use-package doom-themes
@@ -101,7 +103,7 @@
 
   #+RESULTS:
 
-* ispell    
+* ispell
   C-c $ to teach
   #+BEGIN_SRC emacs-lisp    
     (setq ispell-program-name "/usr/local/bin/ispell")
@@ -214,8 +216,8 @@
       (global-flycheck-mode t))
   #+END_SRC
 * undo tree
-  - C-x u to visualise tree
-  - C-x d for diff
+  C-x u to visualise tree
+  C-x d for diff
   #+BEGIN_SRC emacs-lisp
     (use-package undo-tree
       :ensure t
@@ -285,7 +287,7 @@
   #+RESULTS:
   : t
 * json mode
-  - C-c C-f: format the region/buffer with json-reformat (https://github.com/gongo/json-reformat)
+  C-c C-f: format the region/buffer with json-reformat (https://github.com/gongo/json-reformat)
   #+BEGIN_SRC emacs-lisp
     (use-package json-mode
       :ensure t
@@ -314,3 +316,40 @@
 
   #+RESULTS:
   : t
+* projectile
+  Project: C-c C-p
+  #+BEGIN_SRC emacs-lisp
+    (use-package projectile
+      :ensure t
+      :config
+      (projectile-mode +1)
+      (define-key projectile-mode-map (kbd "C-c C-p") 'projectile-command-map)
+      (setq projectile-completion-system 'ivy))
+
+    (use-package counsel-projectile
+      :ensure t
+      :config
+      (counsel-projectile-on))
+  #+END_SRC
+
+  #+RESULTS:
+  : t
+
+* dumb-jump
+  M-g j
+  #+BEGIN_SRC emacs-lisp
+    (use-package dumb-jump
+      :bind (("M-g o" . dumb-jump-go-other-window)
+	     ("M-g j" . dumb-jump-go)
+	     ("M-g x" . dumb-jump-go-prefer-external)
+	     ("M-g z" . dumb-jump-go-prefer-external-other-window))
+      :config 
+      ;; (setq dumb-jump-selector 'ivy) ;; (setq dumb-jump-selector 'helm)
+      :init
+      (dumb-jump-mode)
+      :ensure
+      )
+  #+END_SRC
+
+  #+RESULTS:
+  : dumb-jump-go-prefer-external-other-window

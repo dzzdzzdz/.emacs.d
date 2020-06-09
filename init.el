@@ -21,7 +21,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (yml-mode yaml-mode f minimap json-mode web-mode doom-themes magit iedit expand-region aggressive-indent hungry-delete beacon undo-tree htmlize which-key try use-package tabbar orgalist org-bullets counsel color-theme-modern color-theme auto-complete ace-window))))
+    (dumb-jump counsel-projectile projectile yml-mode yaml-mode f minimap json-mode web-mode doom-themes magit iedit expand-region aggressive-indent hungry-delete beacon undo-tree htmlize which-key try use-package tabbar orgalist org-bullets counsel color-theme-modern color-theme auto-complete ace-window))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
