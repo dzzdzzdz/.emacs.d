@@ -1,0 +1,18 @@
+_Item \#1_
+
+My assumption is that the congestion window (CWND) graph using TCP CUBIC will not differ too much compared to a flow that uses TCP Reno, mainly because traffic is typically not too heavy in a small home network. However, I predict there the CUBIC graph will show more convex and concave sections as time increases in the simulation, but both will display sawtooth-like graphs.
+
+_Item \#2_
+
+The main reason for my hypothesis is that "CUBIC also behaves like Standard TCP when the cubic window growth function is slower than Standard TCP [1]". The reason why the TCP Reno, a closely related variant of TCP Standard, might display a sawtooth structure is because it "grows its window one per round trip time (RTT) [1]". This means that it will grow linearly until a dropped packet is detected, which precedes a small reset, indicated as a vertical drop on the graph. This picture in the paper shows a growth function of TCP CUBIC, which consists of both convex and concave sections. As I have predicted above, the CUBIC graph may initially have a sawtooth-like structure as well, but would eventually taper into a concave/convex curve.
+[[../pics/bic.png]]
+
+_Item \#3_
+
+
+
+_Works Cited_
+
+__
+display small-queue_tcp_cwnd_iperf.png
+display large-queue_tcp_cwnd_iperf.png

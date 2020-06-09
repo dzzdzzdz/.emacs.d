@@ -1,0 +1,57 @@
+* Tasks https://orgmode.org/worg/org-tutorials/orgtutorial_dto.html
+** TODO Start new org file for tutorial C-c C-t
+** TODO M-Shift-RET
+** TODO Outline document
+** TODO Write introduction
+   SCHEDULED: <2020-06-05 Fri>
+
+* Introduction
+
+Org-mode is a personal information management and outlining tool for Emacs. this document is intended to give the raeder a "feel" for org-mode and to teach basic operations.
+
+** Obtaining orge-mode
+
+You can download org-mode from the [[http://staff.science.uva.nl/~dominik/Tools/org/][org-mode home page.]]
+
+** Installation
+** Configuration
+* The basics
+** Creating a new file
+** Simple task list
+** Using headlines to structure a document
+** Links to other places
+** Adding notes to a task
+** Scheduling an appointment
+** Using the agenda
+
+
+* TODO morning ; C-u C-c C-c, C-c C-c, M-S-RET
+* org-agenda, C-c C-s --> org-schedule
+  - [ ] Do 50 pushups
+  - [ ] 
+  - [ ] 
+  - [ ] 
+  - [ ] 
+
+
+* N26 callback confirmation code
+** 945601
+* Failed to load URL "https://store.euw1.lol.riotgames.com/storefront/ui/v1/app.html?language=en_GB&port=59339&clientRegion=euw&selectedItems=&page=featured&recipientSummonerId=" with error "ERR_NETWORK_CHANGED" (-21). ERR_NETWORK_CHANGED
+
+* unused lieferando code
+** XH2ZCD59VRUEFYM2
+
+
+* tn
+  - [X] dinner with mm
+* Fri
+  - [X] house viewing @ 13h30 @ Hochstr 45, 13357, 030-27693964
+* sat
+  SCHEDULED: <2020-06-06 Sat>
+  - [X] drinks w/ Lukas (Can, Mahmoud?) @ 16h
+  - [X] luke's housewarming @ 20h/21h, ask james
+* sun
+  - [X] noelia @ afternoon
+* tues
+  - [X] pick up letter from idagio
+  - [ ] pick up skateboard 
