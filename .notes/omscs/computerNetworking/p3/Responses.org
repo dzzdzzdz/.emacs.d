@@ -1,0 +1,69 @@
+_Item \#1_
+
+My assumption is that the congestion window (CWND) graph using TCP CUBIC will not differ too much compared to a flow that uses TCP Reno, mainly because traffic is typically not too heavy in a small home network. However, I predict there the CUBIC graph will show more convex and concave sections as time increases in the simulation, but both will display sawtooth-like graphs.
+
+_Item \#2_
+
+The main reason for my hypothesis is that "CUBIC also behaves like Standard TCP when the cubic window growth function is slower than Standard TCP [1]". The reason why the TCP Reno, a closely related variant of TCP Standard, might display a sawtooth structure is because it "grows its window one per round trip time (RTT) [1]". This means that it will grow linearly until a dropped packet is detected, which precedes a small reset, indicated as a vertical drop on the graph. This picture in the paper shows a growth function of TCP CUBIC, which consists of both convex and concave sections. As I have predicted above, the CUBIC graph may initially have a sawtooth-like structure as well, but would eventually taper into a concave/convex curve.
+[[../pics/bic.png]]
+
+_Item \#3_
+
+The graph `small-queue_tcp_cwnd_iperf.png` has a huge initial spike, but eventually has a repetitive sawtooth pattern that fluctuates between 12 and 31 size cwnd. 
+
+_Item \#4_
+
+_Item \#5_
+
+_Item \#6_
+
+_Item \#7_
+
+_Works Cited_
+
+__
+display small-queue_tcp_cwnd_iperf.png
+display large-queue_tcp_cwnd_iperf.png
+_
+15:20:46 -> 15:20:47 = 1.0s
+
+10 packets transmitted, 10 received, 0% packet loss, time 9012ms
+rtt min/avg/max/mdev = 20.149/21.032/22.085/0.721 ms
+_
+15:24:41 -> 15:24:46 = 4.5s
+
+10 packets transmitted, 10 received, 0% packet loss, time 9000ms
+rtt min/avg/max/mdev = 632.169/660.966/690.334/17.333 ms
+
+_
+10 packets transmitted, 10 received, 0% packet loss, time 9012ms
+rtt min/avg/max/mdev = 20.141/20.873/22.353/0.665 ms
+
+1.0s
+
+rtt min/avg/max/mdev = 20.095/20,559/21.248/0.453 ms
+
+2.0s
+
+
+
+
+_
+run.sh -> run-cubic.sh,
+run-minq.sh -> run-minq-cubic.sh
+PART 3:
+1) 
+2) 1.0s
+3) rtt min/avg/max/mdev = 20.150/20.873/22.820/0.820 ms
+4) 
+5) 
+6) rtt min/avg/max/mdev = 624.357/729.921/801.744/48.356 ms
+7) 14s
+PART 4:
+1) 
+2) 
+3) 5.2s
+4) 
+5) 
+6) 
+7) 2.6s
