@@ -1,6 +1,7 @@
 Lesson 1: Introduction, History, and Internet Architecture
 
 What are advantages and disadvantages of a layered architecture?
+- 
 What are the differences and similarities of the OSI model and five-layered Internet model?
 What are sockets?
 Describe each layer of the OSI model.
@@ -16,6 +17,7 @@ What is a bridge, and how does it “learn”?
 What is a distributed algorithm?
 Explain the Spanning Tree Algorithm.
 What is the purpose of the Spanning Tree Algorithm?
+
 Lesson 2: Transport and application layers
 
 What does the transport layer provide?
@@ -46,6 +48,7 @@ Is TCP fair in case 2 connections have the same RTT? Explain why.
 Is TCP fair in case 2 connections have different RTTs? Explain why.
 Explain how TCP Cubic works.
 Explain TCP throughput calculation.
+
 Lesson 3: Intradomain routing
 
 What is the difference between the forwarding and routing?
@@ -61,6 +64,7 @@ What is the Routing Information Protocol (RIP)?
 What is the Open Shortest Path First (OSPF) protocol?
 How does a router process advertisements?
 What is hot potato routing?
+
 Lesson 4: AS Relationships and Interdomain Routing
 
 Describe the relationships between ISPs, IXPs, and CDNs.
@@ -78,6 +82,7 @@ What is an IXP?
 What are the four reasons of IXPs increased popularity?
 Which services do IXPs provide?
 How does a route server work?
+
 Lesson 5: Router Design and Algorithms (Part 1)
 
 What are the basic components of a router?

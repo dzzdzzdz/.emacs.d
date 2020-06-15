@@ -108,7 +108,9 @@
   #+BEGIN_SRC emacs-lisp    
     (setq ispell-program-name "/usr/local/bin/ispell")
     (add-hook 'org-mode-hook 'flyspell-mode)
-    ; notes files
+    (add-hook 'text-mode-hook 'flyspell-mode)
+    (add-hook 'prog-mode-hook 'flyspell-prog-mode)
+					    ; notes files
     (setq org-agenda-files (list "~/.emacs.d/.notes/work/dh/main.org"
 				 "~/.emacs.d/.notes/omscs/computerNetworking/i.org"
 				 "~/.emacs.d/.notes/.dzzdzzdz.org"))
@@ -353,3 +355,50 @@
 
   #+RESULTS:
   : dumb-jump-go-prefer-external-other-window
+* ibuffer
+  #+BEGIN_SRC emacs-lisp
+    (global-set-key (kbd "C-x C-b") 'ibuffer)
+    (setq ibuffer-saved-filter-groups
+	  (quote (("default"
+		   ("dired" (mode . dired-mode))
+		   ("org" (name . "^.*org$"))
+
+		   ("web" (or (mode . web-mode) (mode . js2-mode)))
+		   ("shell" (or (mode . eshell-mode) (mode . shell-mode)))
+		   ("mu4e" (name . "\*mu4e\*"))
+		   ("programming" (or
+				   (mode . python-mode)
+				   (mode . c++-mode)))
+		   ("emacs" (or
+			     (name . "^\\*scratch\\*$")
+			     (name . "^\\*Messages\\*$")))
+		   ))))
+    (add-hook 'ibuffer-mode-hook
+	      (lambda ()
+		(ibuffer-auto-mode 1)
+		(ibuffer-switch-to-saved-filter-groups "default")))
+
+    ;; don't show these
+					    ;(add-to-list 'ibuffer-never-show-predicates "zowie")
+    ;; Don't show filter groups if there are no buffers in that group
+    (setq ibuffer-show-empty-filter-groups nil)
+
+    ;; Don't ask for confirmation to delete marked buffers
+    (setq ibuffer-expert t)
+  #+END_SRC
+
+  #+RESULTS:
+  : t
+* emmet
+  #+BEGIN_SRC emacs-lisp
+    (use-package emmet-mode
+      :ensure t
+      :config
+      (add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
+      (add-hook 'web-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
+      (add-hook 'css-mode-hook  'emmet-mode) ;; enable Emmet's css abbreviation.
+      )
+  #+END_SRC
+
+  #+RESULTS:
+  : t
