@@ -66,22 +66,52 @@
   
 * keys
   #+BEGIN_SRC emacs-lisp
-  (global-set-key (kbd "M-o") 'other-window)
-  (global-set-key (kbd "C-<return>") 'execute-extended-command)
-  ;(global-set-key (kbd "C-x g") 'magit-status)
-  (global-set-key (kbd "C-M-o") 'ace-swap-window)
-  (global-set-key (kbd "M-o") 'ace-window)
-  (global-set-key (kbd "C-x C-g") 'goto-line)
+    (global-set-key (kbd "M-o") 'other-window)
+    (global-set-key (kbd "C-<return>") 'execute-extended-command)
+    ;(global-set-key (kbd "C-x g") 'magit-status)
+    (global-set-key (kbd "C-x C-g") 'goto-line)
+
+    ;(define-prefix-command 'z-map)
+    ;(global-set-key (kbd "C-z") 'z-map)
+    ;(define-key z-map (kbd "C-M-o") 'z/swap-windows)
+    (global-set-key (kbd "C-M-o") 'swap-windows)
   #+END_SRC
 
   #+RESULTS:
   : goto-line
+
+* functions
+  #+BEGIN_SRC emacs-lisp
+    ;; (defun z/swap-windows ()
+    ;;   ""
+    ;;   (interactive)
+    ;;   (ace-swap-window)
+    ;;   (aw-flip-window)
+    ;;   )
+    (defun swap-windows ()
+      ""
+      (interactive)
+      (ace-swap-window)
+      (aw-flip-window)
+      )
+  #+END_SRC
+
+  #+RESULTS:
+  : swap-windows
 
 * try
   #+BEGIN_SRC emacs-lisp
     (use-package try
       :ensure t)
   #+END_SRC
+
+* quelpa
+  #+BEGIN_SRC emacs-lisp
+    (use-package quelpa
+      :ensure t)
+  #+END_SRC
+
+  #+RESULTS:
 
 * which key
   Brings up some help
@@ -241,10 +271,13 @@
       :config
       (global-hungry-delete-mode))
 
-    (use-package aggressive-indent
-      :ensure t
-      :config
-      (global-aggressive-indent-mode 1))
+    ;; (use-package aggressive-indent
+    ;;   :ensure t
+    ;;   :config
+    ;;   (global-aggressive-indent-mode 0)
+    ;;   (add-hook 'emacs-lisp-mode-hook)
+    ;;   (add-hook 'css-mode-hook)
+    ;;   (add-to-list 'aggressive-indent-excluded-modes 'html-mode))
 
     (use-package expand-region
       :ensure t
@@ -295,15 +328,17 @@
       :ensure t
       :init)
   #+END_SRC
-* minimap
+* minimap 
+  toggle: M-RET M-RET
   #+BEGIN_SRC emacs-lisp
-    ;; (use-package minimap
-    ;;   :ensure t
-    ;;   :config
-    ;;   (setq minimap-window-location "right")
-    ;;   (global-minimap-mode 1))
+    (use-package minimap
+      :ensure t
+      :config
+      (setq minimap-window-location "right")
+      (global-minimap-mode 0))
   #+END_SRC
   #+RESULTS:
+  : t
 * yaml mode
   #+BEGIN_SRC emacs-lisp
     (use-package yaml-mode
@@ -319,7 +354,7 @@
   #+RESULTS:
   : t
 * projectile
-  Project: C-c C-p
+  Project: C-c C-p p
   #+BEGIN_SRC emacs-lisp
     (use-package projectile
       :ensure t
@@ -328,10 +363,10 @@
       (define-key projectile-mode-map (kbd "C-c C-p") 'projectile-command-map)
       (setq projectile-completion-system 'ivy))
 
-    (use-package counsel-projectile
-      :ensure t
-      :config
-      (counsel-projectile-on))
+    ;; (use-package counsel-projectile
+    ;;   :ensure t
+    ;;   :config
+    ;;   (counsel-projectile-on))
   #+END_SRC
 
   #+RESULTS:
@@ -402,3 +437,80 @@
 
   #+RESULTS:
   : t
+* Xtreemacs
+  #+BEGIN_SRC emacs-lisp
+    ;; (use-package treemacs
+    ;;     :ensure t
+    ;;     :defer t
+    ;;     :config
+    ;;     (progn
+
+    ;;       (setq treemacs-follow-after-init          t
+    ;; 	    treemacs-width                      35
+    ;; 	    treemacs-indentation                2
+    ;; 	    treemacs-git-integration            t
+    ;; 	    treemacs-collapse-dirs              3
+    ;; 	    treemacs-silent-refresh             nil
+    ;; 	    treemacs-change-root-without-asking nil
+    ;; 	    treemacs-sorting                    'alphabetic-desc
+    ;; 	    treemacs-show-hidden-files          t
+    ;; 	    treemacs-never-persist              nil
+    ;; 	    treemacs-is-never-other-window      nil
+    ;; 	    treemacs-goto-tag-strategy          'refetch-index)
+
+    ;;       (treemacs-follow-mode t)
+    ;;       (treemacs-filewatch-mode t))
+    ;;     :bind
+    ;;     (:map global-map
+    ;; 	  ([f8]        . treemacs-toggle)
+    ;; 	  ([f9]        . treemacs-projectile-toggle)
+    ;; 	  ("<C-M-tab>" . treemacs-toggle)
+    ;; 	  ("M-0"       . treemacs-select-window)
+    ;; 	  ("C-c 1"     . treemacs-delete-other-windows)
+    ;; 	))
+    ;;   (use-package treemacs-projectile
+    ;;     :defer t
+    ;;     :ensure t
+    ;;     :config
+    ;;     (setq treemacs-header-function #'treemacs-projectile-create-header)
+    ;; )
+  #+END_SRC
+
+  #+RESULTS:
+  : t
+* dired
+  #+BEGIN_SRC emacs-lisp
+    (quelpa '(dired+ :fetcher github :repo "emacsmirror/dired-plus"))
+    (use-package dired+
+      :ensure t
+      :config (require 'dired+))
+
+    (use-package pcre2el
+      :ensure t
+      :config
+      (pcre-mode)
+      )
+
+    (use-package wgrep
+      :ensure t
+      )
+
+  #+END_SRC
+
+  #+RESULTS:
+
+* all the icons
+  #+BEGIN_SRC emacs-lisp
+    (use-package all-the-icons 
+    :ensure t
+    :defer 0.5)
+
+    (use-package all-the-icons-dired
+    :ensure t
+    )
+
+    (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
+  #+END_SRC
+
+  #+RESULTS:
+  | all-the-icons-dired-mode |

@@ -50,11 +50,30 @@
 (global-set-key (kbd "M-o") 'other-window)
 (global-set-key (kbd "C-<return>") 'execute-extended-command)
 ;(global-set-key (kbd "C-x g") 'magit-status)
-(global-set-key (kbd "C-M-o") 'ace-swap-window)
-(global-set-key (kbd "M-o") 'ace-window)
 (global-set-key (kbd "C-x C-g") 'goto-line)
 
+;(define-prefix-command 'z-map)
+;(global-set-key (kbd "C-z") 'z-map)
+;(define-key z-map (kbd "C-M-o") 'z/swap-windows)
+(global-set-key (kbd "C-M-o") 'swap-windows)
+
+;; (defun z/swap-windows ()
+;;   ""
+;;   (interactive)
+;;   (ace-swap-window)
+;;   (aw-flip-window)
+;;   )
+(defun swap-windows ()
+  ""
+  (interactive)
+  (ace-swap-window)
+  (aw-flip-window)
+  )
+
 (use-package try
+  :ensure t)
+
+(use-package quelpa
   :ensure t)
 
 (use-package which-key
@@ -70,7 +89,9 @@
 
 (setq ispell-program-name "/usr/local/bin/ispell")
 (add-hook 'org-mode-hook 'flyspell-mode)
-; notes files
+(add-hook 'text-mode-hook 'flyspell-mode)
+(add-hook 'prog-mode-hook 'flyspell-prog-mode)
+					; notes files
 (setq org-agenda-files (list "~/.emacs.d/.notes/work/dh/main.org"
 			     "~/.emacs.d/.notes/omscs/computerNetworking/i.org"
 			     "~/.emacs.d/.notes/.dzzdzzdz.org"))
@@ -166,10 +187,13 @@
   :config
   (global-hungry-delete-mode))
 
-(use-package aggressive-indent
-  :ensure t
-  :config
-  (global-aggressive-indent-mode 1))
+;; (use-package aggressive-indent
+;;   :ensure t
+;;   :config
+;;   (global-aggressive-indent-mode 0)
+;;   (add-hook 'emacs-lisp-mode-hook)
+;;   (add-hook 'css-mode-hook)
+;;   (add-to-list 'aggressive-indent-excluded-modes 'html-mode))
 
 (use-package expand-region
   :ensure t
@@ -221,7 +245,8 @@
 (use-package projectile
   :ensure t
   :config
-  (projectile-global-mode)
+  (projectile-mode +1)
+  (define-key projectile-mode-map (kbd "C-c C-p") 'projectile-command-map)
   (setq projectile-completion-system 'ivy))
 
 ;; (use-package counsel-projectile
@@ -234,11 +259,107 @@
 	 ("M-g j" . dumb-jump-go)
 	 ("M-g x" . dumb-jump-go-prefer-external)
 	 ("M-g z" . dumb-jump-go-prefer-external-other-window))
-  :config (setq dumb-jump-selector 'ivy) ;; (setq dumb-jump-selector 'helm)
-  :ensure)
+  :config 
+  ;; (setq dumb-jump-selector 'ivy) ;; (setq dumb-jump-selector 'helm)
+  :init
+  (dumb-jump-mode)
+  :ensure
+  )
 
-:config
-;; (setq dumb-jump-selector 'ivy) ;; (setq dumb-jump-selector 'helm)
-:init
-(dumb-jump-mode)
-:ensure
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+(setq ibuffer-saved-filter-groups
+      (quote (("default"
+	       ("dired" (mode . dired-mode))
+	       ("org" (name . "^.*org$"))
+
+	       ("web" (or (mode . web-mode) (mode . js2-mode)))
+	       ("shell" (or (mode . eshell-mode) (mode . shell-mode)))
+	       ("mu4e" (name . "\*mu4e\*"))
+	       ("programming" (or
+			       (mode . python-mode)
+			       (mode . c++-mode)))
+	       ("emacs" (or
+			 (name . "^\\*scratch\\*$")
+			 (name . "^\\*Messages\\*$")))
+	       ))))
+(add-hook 'ibuffer-mode-hook
+	  (lambda ()
+	    (ibuffer-auto-mode 1)
+	    (ibuffer-switch-to-saved-filter-groups "default")))
+
+;; don't show these
+					;(add-to-list 'ibuffer-never-show-predicates "zowie")
+;; Don't show filter groups if there are no buffers in that group
+(setq ibuffer-show-empty-filter-groups nil)
+
+;; Don't ask for confirmation to delete marked buffers
+(setq ibuffer-expert t)
+
+(use-package emmet-mode
+  :ensure t
+  :config
+  (add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
+  (add-hook 'web-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
+  (add-hook 'css-mode-hook  'emmet-mode) ;; enable Emmet's css abbreviation.
+  )
+
+;; (use-package treemacs
+;;     :ensure t
+;;     :defer t
+;;     :config
+;;     (progn
+
+;;       (setq treemacs-follow-after-init          t
+;; 	    treemacs-width                      35
+;; 	    treemacs-indentation                2
+;; 	    treemacs-git-integration            t
+;; 	    treemacs-collapse-dirs              3
+;; 	    treemacs-silent-refresh             nil
+;; 	    treemacs-change-root-without-asking nil
+;; 	    treemacs-sorting                    'alphabetic-desc
+;; 	    treemacs-show-hidden-files          t
+;; 	    treemacs-never-persist              nil
+;; 	    treemacs-is-never-other-window      nil
+;; 	    treemacs-goto-tag-strategy          'refetch-index)
+
+;;       (treemacs-follow-mode t)
+;;       (treemacs-filewatch-mode t))
+;;     :bind
+;;     (:map global-map
+;; 	  ([f8]        . treemacs-toggle)
+;; 	  ([f9]        . treemacs-projectile-toggle)
+;; 	  ("<C-M-tab>" . treemacs-toggle)
+;; 	  ("M-0"       . treemacs-select-window)
+;; 	  ("C-c 1"     . treemacs-delete-other-windows)
+;; 	))
+;;   (use-package treemacs-projectile
+;;     :defer t
+;;     :ensure t
+;;     :config
+;;     (setq treemacs-header-function #'treemacs-projectile-create-header)
+;; )
+
+(quelpa '(dired+ :fetcher github :repo "emacsmirror/dired-plus"))
+(use-package dired+
+  :ensure t
+  :config (require 'dired+))
+
+(use-package pcre2el
+  :ensure t
+  :config
+  (pcre-mode)
+  )
+
+(use-package wgrep
+  :ensure t
+  )
+
+(use-package all-the-icons 
+:ensure t
+:defer 0.5)
+
+(use-package all-the-icons-dired
+:ensure t
+)
+
+(add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
