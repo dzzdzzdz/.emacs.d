@@ -227,11 +227,10 @@
   :ensure t
   :init)
 
-;; (use-package minimap
-;;   :ensure t
-;;   :config
-;;   (setq minimap-window-location "right")
-;;   (global-minimap-mode 1))
+(use-package minimap
+  :ensure t
+  :config
+  (setq minimap-window-location "right"))
 
 (use-package yaml-mode
   :ensure t
