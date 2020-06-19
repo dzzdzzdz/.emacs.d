@@ -305,7 +305,6 @@
   #+END_SRC
 
   #+RESULTS:
-  : hydra-git-gutter/body
 
 * web mode
   #+BEGIN_SRC emacs-lisp
