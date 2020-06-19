@@ -209,6 +209,10 @@
 (use-package magit
   :ensure t
   :init)
+(use-package diff-hl
+  :ensure t
+  :init
+  (global-diff-hl-mode +1))
 
 (use-package web-mode
   :ensure t
@@ -225,7 +229,11 @@
 
 (use-package json-mode
   :ensure t
-  :init)
+  :init
+  :config
+  (setq-default indent-tabs-mode nil)
+  (setq-default tab-width 2)
+  (setq standard-indent 2))
 
 (use-package minimap
   :ensure t
