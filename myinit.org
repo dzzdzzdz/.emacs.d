@@ -324,10 +324,18 @@
 * json mode
   C-c C-f: format the region/buffer with json-reformat (https://github.com/gongo/json-reformat)
   #+BEGIN_SRC emacs-lisp
-    (use-package json-mode
-      :ensure t
-      :init)
+	(use-package json-mode
+	  :ensure t
+	  :init
+	  :config
+	  (setq-default indent-tabs-mode nil)
+	  (setq-default tab-width 2)
+	  (setq standard-indent 2))
   #+END_SRC
+
+  #+RESULTS:
+  : t
+
 * minimap 
   toggle: M-RET M-RET
   #+BEGIN_SRC emacs-lisp
@@ -513,3 +521,5 @@
 
   #+RESULTS:
   | all-the-icons-dired-mode |
+* pandoc
+  pandoc -f markdown -t org -o newfile.org original-file.markdown
