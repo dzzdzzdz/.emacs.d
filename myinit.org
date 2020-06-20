@@ -527,3 +527,15 @@
   | all-the-icons-dired-mode |
 * pandoc
   pandoc -f markdown -t org -o newfile.org original-file.markdown
+* pdf tools
+  #+BEGIN_SRC emacs-lisp
+    (use-package pdf-tools
+      :ensure t)
+    (use-package org-pdfview
+      :ensur t)
+
+    (require 'pdf-tools)
+    (require 'org-pdfview)
+  #+END_SRC
+
+  #+RESULTS:
