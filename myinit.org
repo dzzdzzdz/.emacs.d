@@ -99,7 +99,7 @@
   #+RESULTS:
   : swap-windows
 
-* try
+* [[https://github.com/larstvei/Try][try]]
   #+BEGIN_SRC emacs-lisp
     (use-package try
       :ensure t)
@@ -113,7 +113,7 @@
 
   #+RESULTS:
 
-* which key
+* [[https://github.com/justbur/emacs-which-key][which key]]
   Brings up some help
   #+BEGIN_SRC emacs-lisp
     (use-package which-key
@@ -173,7 +173,7 @@
     (winner-mode 1) ; C-left, C-right for state
     (windmove-default-keybindings) ; shift + arrow
   #+END_SRC
-* ace-window
+* [[https://github.com/abo-abo/ace-window][ace-window]]
   #+BEGIN_SRC emacs-lisp
     (use-package ace-window
       :ensure t
@@ -193,7 +193,7 @@
   #+RESULTS:
   : t
 
-* swiper
+* [[https://github.com/abo-abo/swiper][swiper]]
   #+BEGIN_SRC emacs-lisp
     (use-package counsel
       :bind
@@ -240,14 +240,14 @@
 	))
   #+END_SRC
 
-* flycheck
+* [[https://www.flycheck.org/en/latest/][flycheck]]
   #+BEGIN_SRC emacs-lisp
     (use-package flycheck
       :ensure t
       :init
       (global-flycheck-mode t))
   #+END_SRC
-* undo tree
+* [[https://elpa.gnu.org/packages/undo-tree.html][undo tree]]
   C-x u to visualise tree
   C-x d for diff
   #+BEGIN_SRC emacs-lisp
@@ -364,7 +364,7 @@
 
   #+RESULTS:
   : t
-* projectile
+* [[https://github.com/bbatsov/projectile][projectile]]
   Project: C-c C-p p
   #+BEGIN_SRC emacs-lisp
     (use-package projectile
@@ -383,7 +383,7 @@
   #+RESULTS:
   : t
 
-* dumb-jump
+* [[https://github.com/jacktasia/dumb-jump][dumb-jump]]
   M-g j
   #+BEGIN_SRC emacs-lisp
     (use-package dumb-jump
@@ -526,10 +526,10 @@
   #+RESULTS:
   | all-the-icons-dired-mode | diredp-nb-marked-in-mode-name | diredp--set-up-font-locking | dired-extra-startup |
 
-* pandoc
+* [[https://pandoc.org/][pandoc]]
   pandoc -f markdown -t org -o newfile.org original-file.markdown
 
-* pdf tools
+* [[https://github.com/politza/pdf-tools][pdf tools]]
   #+BEGIN_SRC emacs-lisp
     (use-package pdf-tools
       :ensure t)
