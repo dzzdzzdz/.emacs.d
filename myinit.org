@@ -531,12 +531,20 @@
   #+BEGIN_SRC emacs-lisp
     (use-package pdf-tools
       :ensure t)
-    (use-package org-pdfview
-      :ensur t)
+    (use-package org-pdftools
+      :ensure t)
 
     (require 'pdf-tools)
-    (require 'org-pdfview)
+    (require 'org-pdftools)
   #+END_SRC
 
   #+RESULTS:
-* 
+* [[https://depp.brause.cc/eyebrowse/][eyebrowse]]
+  C-c C-w , #rename
+  C-c C-w " #close
+  #+BEGIN_SRC emacs-lisp
+    (use-package eyebrowse
+    :ensure t)
+  #+END_SRC
+
+  #+RESULTS:

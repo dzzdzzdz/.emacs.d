@@ -187,13 +187,13 @@
   :config
   (global-hungry-delete-mode))
 
-;; (use-package aggressive-indent
-;;   :ensure t
-;;   :config
-;;   (global-aggressive-indent-mode 0)
-;;   (add-hook 'emacs-lisp-mode-hook)
-;;   (add-hook 'css-mode-hook)
-;;   (add-to-list 'aggressive-indent-excluded-modes 'html-mode))
+(use-package aggressive-indent
+  :ensure t
+  :config)
+  ;; (global-aggressive-indent-mode 0)
+  ;; (add-hook 'emacs-lisp-mode-hook)
+  ;; (add-hook 'css-mode-hook)
+  ;; (add-to-list 'aggressive-indent-excluded-modes 'html-mode))
 
 (use-package expand-region
   :ensure t
@@ -370,3 +370,11 @@
 )
 
 (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
+
+(use-package pdf-tools
+  :ensure t)
+(use-package org-pdfview
+  :ensure t)
+
+(require 'pdf-tools)
+(require 'org-pdfview)
