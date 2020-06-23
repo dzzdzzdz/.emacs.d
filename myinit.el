@@ -376,4 +376,6 @@
 (require 'pdf-tools)
 
 (use-package eyebrowse
-:ensure t)
+  :ensure t
+  :config
+  (eyebrowse-mode))
