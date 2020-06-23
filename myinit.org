@@ -524,9 +524,11 @@
   #+END_SRC
 
   #+RESULTS:
-  | all-the-icons-dired-mode |
+  | all-the-icons-dired-mode | diredp-nb-marked-in-mode-name | diredp--set-up-font-locking | dired-extra-startup |
+
 * pandoc
   pandoc -f markdown -t org -o newfile.org original-file.markdown
+
 * pdf tools
   #+BEGIN_SRC emacs-lisp
     (use-package pdf-tools
@@ -535,6 +537,7 @@
   #+END_SRC
 
   #+RESULTS:
+
 * [[https://depp.brause.cc/eyebrowse/][eyebrowse]]
   C-c C-w . #list
   C-c C-w , #rename
