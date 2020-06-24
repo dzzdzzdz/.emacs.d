@@ -2,6 +2,7 @@
 
 * Links
   - [[https://google.com][google]]
+  - [[./myinit.org][my init]]
 * Lesson 1
 ** Part 1
   Introducing the series and setting up the package manager
