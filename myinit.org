@@ -584,3 +584,15 @@
   #+END_SRC
 
   #+RESULTS:
+* [[https://github.com/pashky/restclient.el][restclient]]
+  #+BEGIN_SRC emacs-lisp
+    (use-package restclient
+      :ensure t)
+    (use-package company-restclient
+      :ensure t
+      :config
+      (add-to-list 'company-backends 'company-restclient))
+  #+END_SRC
+
+  #+RESULTS:
+  : t
