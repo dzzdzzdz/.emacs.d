@@ -34,6 +34,7 @@
   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
 	doom-themes-enable-italic t) ; if nil, italics is universally disabled
   (load-theme 'doom-nova t)
+  ;(load-theme 'doom-city-lights t)
 
   ;; Enable flashing mode-line on errors
   (doom-themes-visual-bell-config)
@@ -209,10 +210,15 @@
 (use-package magit
   :ensure t
   :init)
+
 (use-package diff-hl
   :ensure t
   :init
   (global-diff-hl-mode +1))
+
+; TODO FIGURE OUT
+;; (use-package forge
+;;   :ensure t)
 
 (use-package web-mode
   :ensure t
@@ -409,3 +415,6 @@
   :ensure t
   :config
   (add-to-list 'company-backends 'company-restclient))
+
+(use-package 'live-py-mode
+  :ensure t)

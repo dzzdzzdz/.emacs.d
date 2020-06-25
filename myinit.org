@@ -47,6 +47,7 @@
       (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
 	    doom-themes-enable-italic t) ; if nil, italics is universally disabled
       (load-theme 'doom-nova t)
+      ;(load-theme 'doom-city-lights t)
 
       ;; Enable flashing mode-line on errors
       (doom-themes-visual-bell-config)
@@ -602,3 +603,11 @@
 
   #+RESULTS:
   : t
+* [[https://github.com/donkirkby/live-py-plugin][live-py]]
+  Python 2 is no longer supported.
+  #+BEGIN_SRC emacs-lisp
+    ;; (use-package 'live-py-mode
+    ;;   :ensure t)
+  #+END_SRC
+
+  #+RESULTS:
