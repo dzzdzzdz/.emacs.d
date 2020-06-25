@@ -351,14 +351,31 @@
   :ensure t
   :config (require 'dired+))
 
+(setq dired-dwim-target t)
+
+(use-package dired-narrow
+  :ensure t
+  :config
+  (bind-key "C-c C-n" #'dired-narrow)
+  (bind-key "C-c C-f" #'dired-narrow-fuzzy)
+  (bind-key "C-x C-N" #'dired-narrow-regexp)
+  )
+
+(use-package dired-subtree
+  :ensure t
+  :after dired
+  :config
+  (bind-key "<tab>" #'dired-subtree-toggle dired-mode-map)
+  (bind-key "<backtab>" #'dired-subtree-cycle dired-mode-map))
+
+(use-package wgrep
+  :ensure t
+  )
+
 (use-package pcre2el
   :ensure t
   :config
   (pcre-mode)
-  )
-
-(use-package wgrep
-  :ensure t
   )
 
 (use-package all-the-icons 
@@ -379,3 +396,16 @@
   :ensure t
   :config
   (eyebrowse-mode))
+
+(use-package dictionary
+  :ensure t)
+
+( use-package synosaurus
+  :ensure t)
+
+(use-package restclient
+  :ensure t)
+(use-package company-restclient
+  :ensure t
+  :config
+  (add-to-list 'company-backends 'company-restclient))
