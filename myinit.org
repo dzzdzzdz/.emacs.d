@@ -614,7 +614,10 @@
 * [[https://github.com/chuntaro/emacs-keypression][keypression]]
   #+BEGIN_SRC emacs-lisp
     (use-package keypression
-      :ensure t)
+      :ensure t
+      :config
+      (setq keypression-fade-out-delay 0.3))
   #+END_SRC
 
   #+RESULTS:
+  : t
