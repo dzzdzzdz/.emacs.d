@@ -1,0 +1,62 @@
+# CS 6250 Summer 2020 - Firewall Policy
+# Rule number, srcmac, dstmac, srcip, dstip, srcport, dstport, protocol, ipprotocol
+# Rule number is incremented each time - mostly for debug purposes
+# - for a rule element indicates that you don't need to match it.
+# Comments are on their own line.  You may use more than one line per rule
+
+# <Host client1: client1-eth1:10.0.0.1 pid=30392> 
+# <Host e1: e1-eth1:10.0.0.2 pid=30394> 
+# <Host e2: e2-eth1:10.0.0.3 pid=30396> 
+# <Host e3: e3-eth1:10.0.0.4 pid=30398> 
+# <Host server1: server1-eth1:10.0.0.5 pid=30400> 
+# <Host server2: server2-eth1:10.0.0.6 pid=30402> 
+# <Host server3: server3-eth1:10.0.0.7 pid=30404> 
+# <Host w1: w1-eth1:10.0.0.8 pid=30406> 
+# <Host w2: w2-eth1:10.0.0.9 pid=30408> 
+# <Host w3: w3-eth1:10.0.0.10 pid=30410> 
+
+# SAMPLE 
+# 1, -, -, -, -, -, 1080, T, -
+# rule number  	    1, 
+# srcmac	    -, 
+# dstmac	    -, 
+# srcip		    -, 
+# dstip 	    -, 
+# srcport	    -, 
+# dstport	    1080, 
+# protocol    	    T, 
+# ipproto	    -
+
+#1
+1, -, -, -, 10.0.0.6, -, 1723, T, -
+2, -, -, -, 10.0.0.6, -, -, O, 47
+
+#2
+3, -, -, -, 10.0.0.2, -, 22, B, -
+4, -, -, -, 10.0.0.3, -, 22, B, -
+5, -, -, -, 10.0.0.4, -, 22, B, -
+
+#3
+6, -, -, -, 10.0.0.5, -, 123, U, -
+7, -, -, -, 10.0.0.5, -, 53, U, -
+8, -, -, -, 10.0.0.6, -, 123, U, -
+9, -, -, -, 10.0.0.6, -, 53, U, -
+
+#4
+10, -, -, 10.0.0.8, 10.0.0.1, -, -, I, -
+11, -, -, 10.0.0.9, 10.0.0.1, -, -, I, -
+
+#5
+12, -, -, 10.0.0.2, 10.0.0.4, -, 9950, T, -
+13, -, -, 10.0.0.2, 10.0.0.4, -, 9951, T, -
+14, -, -, 10.0.0.2, 10.0.0.4, -, 9952, T, -
+
+#6
+15, -, -, 10.0.0.1, 10.0.0.2, -, -, B, -
+16, -, -, 10.0.0.1, 10.0.0.3, -, -, B, -
+17, -, -, 10.0.0.1, 10.0.0.4, -, -, B, -
+
+#7
+18, -, -, -, 10.0.0.7, -, -, O, 50
+19, -, -, -, 10.0.0.7, -, 500, U, -
+20, -, -, -, 10.0.0.7, -, 1701, U, -
