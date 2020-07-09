@@ -69,7 +69,7 @@
   #+BEGIN_SRC emacs-lisp
     (global-set-key (kbd "M-o") 'other-window)
     (global-set-key (kbd "C-<return>") 'execute-extended-command)
-    ;(global-set-key (kbd "C-x g") 'magit-status)
+    (global-set-key (kbd "C-x g") 'magit-status)
     (global-set-key (kbd "C-x C-g") 'goto-line)
 
     ;(define-prefix-command 'z-map)
@@ -79,7 +79,7 @@
   #+END_SRC
 
   #+RESULTS:
-  : goto-line
+  : swap-windows
 
 * functions
   #+BEGIN_SRC emacs-lisp
@@ -123,6 +123,7 @@
   #+END_SRC
 
 * org-mode stuff
+
   #+BEGIN_SRC emacs-lisp
     (use-package org-bullets
       :ensure t
@@ -130,6 +131,16 @@
       (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
     (use-package htmlize
       :ensure t)
+  #+END_SRC
+
+  #+RESULTS:
+
+* org-drill
+  #+BEGIN_SRC emacs-lisp
+    (use-package org-drill
+      :ensure t
+      :init
+      )
   #+END_SRC
 
   #+RESULTS:
@@ -372,7 +383,9 @@
   #+RESULTS:
   : t
 * [[https://github.com/bbatsov/projectile][projectile]]
-  Project: C-c C-p p
+  Switch project: C-c C-p p
+  Grep in project: C-c C-p s
+  Specfile: C-c C-p (4) t
   #+BEGIN_SRC emacs-lisp
     (use-package projectile
       :ensure t

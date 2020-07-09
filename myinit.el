@@ -50,7 +50,7 @@
 
 (global-set-key (kbd "M-o") 'other-window)
 (global-set-key (kbd "C-<return>") 'execute-extended-command)
-;(global-set-key (kbd "C-x g") 'magit-status)
+(global-set-key (kbd "C-x g") 'magit-status)
 (global-set-key (kbd "C-x C-g") 'goto-line)
 
 ;(define-prefix-command 'z-map)
@@ -416,5 +416,10 @@
   :config
   (add-to-list 'company-backends 'company-restclient))
 
-(use-package 'live-py-mode
-  :ensure t)
+;; (use-package live-py-mode
+;;   :ensure t)
+
+(use-package keypression
+  :ensure t
+  :config
+  (setq keypression-fade-out-delay 0.3))
