@@ -88,6 +88,11 @@
 (use-package htmlize
   :ensure t)
 
+(use-package org-drill
+  :ensure t
+  :init
+  )
+
 (setq ispell-program-name "/usr/local/bin/ispell")
 (add-hook 'org-mode-hook 'flyspell-mode)
 (add-hook 'text-mode-hook 'flyspell-mode)
@@ -209,7 +214,8 @@
 
 (use-package magit
   :ensure t
-  :init)
+  :config
+  (global-set-key (kbd "C-<return>") 'magit-diff-visit-file-other-window))
 
 (use-package diff-hl
   :ensure t
